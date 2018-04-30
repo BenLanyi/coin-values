@@ -1,37 +1,39 @@
 // @flow
 
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import SearchBox from "./components/SearchBox.js";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      coinRecords: [],
-    }
+      coinRecords: []
+    };
   }
   componentDidMount() {
-    fetch('https://api.coinmarketcap.com/v1/ticker/?limit=10')
-    .then(response => response.json())
-    .then(data => {
-      let coinRecords = data.map((coin) => {
-        return(
-          <div key={coin.id}>
-            <h1>{coin.name}</h1>
-            <h2>{coin.price_usd}</h2>
-          </div>
-        )
-      })
-      this.setState({coinRecords: coinRecords});
-      console.log("state", this.state.coinRecords);
-    })
+    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=10")
+      .then(response => response.json())
+      .then(data => this.setState({ coinRecords: data }));
+  }
+  searchCoins(formText) {
+    console.log("text entered: ", formText);
   }
   render() {
-    // const tickers = this.state.coinRecords
+    const tickers = this.state.coinRecords.map(coin => {
+      return (
+        <div key={coin.id}>
+          <h1>{coin.name}</h1>
+          <h2>{coin.price_usd}</h2>
+        </div>
+      );
+    });
+
     return (
       <div>
         <h1>Crypto Values</h1>
-          {this.state.coinRecords}
+        <SearchBox searchCoins={this.searchCoins.bind(this.value)} />
+        {tickers}
       </div>
     );
   }
