@@ -41,7 +41,7 @@ class App extends Component {
           return (
             <div key={coin.id}>
               <h1>{coin.name}</h1>
-              <h2>{coin.price_usd}</h2>
+              <h2>$USD {coin.price_usd}</h2>
             </div>
           );
         }
