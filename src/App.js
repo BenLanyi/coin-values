@@ -3,12 +3,14 @@
 import React, { Component } from "react";
 import "./App.css";
 import SearchBox from "./components/SearchBox.js";
+import fuzzysearch from "fuzzysearch";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
-      coinRecords: []
+      coinRecords: [],
+      searchValue: ""
     };
   }
   componentDidMount() {
@@ -17,22 +19,43 @@ class App extends Component {
       .then(data => this.setState({ coinRecords: data }));
   }
   searchCoins(formText) {
-    console.log("text entered: ", formText);
+    //console.log("text entered: ", formText);
+    this.setState({ searchValue: formText });
   }
   render() {
     const tickers = this.state.coinRecords.map(coin => {
-      return (
-        <div key={coin.id}>
-          <h1>{coin.name}</h1>
-          <h2>{coin.price_usd}</h2>
-        </div>
-      );
+      if (this.state.searchValue === "") {
+        return (
+          <div key={coin.id}>
+            <h2>{coin.name}</h2>
+            <h3>USD$ {coin.price_usd}</h3>
+          </div>
+        );
+      } else {
+        if (
+          fuzzysearch(
+            this.state.searchValue.toUpperCase(),
+            coin.name.toUpperCase()
+          )
+        ) {
+          return (
+            <div key={coin.id}>
+              <h1>{coin.name}</h1>
+              <h2>{coin.price_usd}</h2>
+            </div>
+          );
+        }
+      }
     });
 
     return (
       <div>
-        <h1>Crypto Values</h1>
-        <SearchBox searchCoins={this.searchCoins.bind(this.value)} />
+        <h1 className="App-header">Cryptocurrency Values</h1>
+        <SearchBox
+          value={this.state.searchValue}
+          searchCoins={this.searchCoins.bind(this)}
+        />
+        <hr />
         {tickers}
       </div>
     );
