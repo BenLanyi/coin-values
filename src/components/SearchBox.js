@@ -1,15 +1,20 @@
 // @flow
 
 import React, { Component } from "react";
+type PropType = {
+  searchCoins: string => void
+};
+type StateType = {};
 
-class SearchBox extends Component {
-  handleChange(e) {
-    this.props.searchCoins(e.target.value);
-  }
+class SearchBox extends Component<PropType, StateType> {
+  handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    this.props.searchCoins(e.currentTarget.value);
+  };
   render() {
     return (
       <label>
-        <textarea
+        <input
+          type="text"
           rows="1"
           placeholder="Search"
           onChange={this.handleChange.bind(this)}

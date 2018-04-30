@@ -3,9 +3,17 @@
 import React, { Component } from "react";
 import "./App.css";
 import SearchBox from "./components/SearchBox.js";
-import fuzzysearch from "fuzzysearch";
+import CoinRow from "./components/CoinRow.js";
 
-class App extends Component {
+type PropType = {
+  searchCoins: string => void
+};
+type StateType = {
+  coinRecords: any,
+  searchValue: any
+};
+
+class App extends Component<PropType, StateType> {
   constructor() {
     super();
     this.state = {
@@ -14,7 +22,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=10")
+    fetch("https://api.coinmarketcap.com/v1/ticker/?limit=20")
       .then(response => response.json())
       .then(data => this.setState({ coinRecords: data }));
   }
@@ -22,41 +30,24 @@ class App extends Component {
     //console.log("text entered: ", formText);
     this.setState({ searchValue: formText });
   }
-  render() {
-    const tickers = this.state.coinRecords.map(coin => {
-      if (this.state.searchValue === "") {
-        return (
-          <div key={coin.id}>
-            <h1>{coin.name}</h1>
-            <h2>USD$ {coin.price_usd}</h2>
-          </div>
-        );
-      } else {
-        if (
-          fuzzysearch(
-            this.state.searchValue.toUpperCase(),
-            coin.name.toUpperCase()
-          )
-        ) {
-          return (
-            <div key={coin.id}>
-              <h1>{coin.name}</h1>
-              <h2>$USD {coin.price_usd}</h2>
-            </div>
-          );
-        }
-      }
-    });
 
+  render() {
     return (
-      <div>
-        <h1 className="App-header">Cryptocurrency Values</h1>
-        <SearchBox
-          value={this.state.searchValue}
-          searchCoins={this.searchCoins.bind(this)}
-        />
-        <hr />
-        {tickers}
+      <div className="App">
+        <div>
+          <h1 className="App-header">Cryptocurrency Values</h1>
+        </div>
+        <div className="App-body">
+          <SearchBox
+            value={this.state.searchValue}
+            searchCoins={this.searchCoins.bind(this)}
+          />
+          <hr />
+          <CoinRow
+            coinRecords={this.state.coinRecords}
+            searchValue={this.state.searchValue}
+          />
+        </div>
       </div>
     );
   }
