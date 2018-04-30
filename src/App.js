@@ -27,8 +27,8 @@ class App extends Component {
       if (this.state.searchValue === "") {
         return (
           <div key={coin.id}>
-            <h2>{coin.name}</h2>
-            <h3>USD$ {coin.price_usd}</h3>
+            <h1>{coin.name}</h1>
+            <h2>USD$ {coin.price_usd}</h2>
           </div>
         );
       } else {
