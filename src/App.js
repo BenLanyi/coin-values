@@ -5,12 +5,10 @@ import "./App.css";
 import SearchBox from "./components/SearchBox.js";
 import CoinRow from "./components/CoinRow.js";
 
-type PropType = {
-  searchCoins: string => void
-};
+type PropType = {};
 type StateType = {
-  coinRecords: any,
-  searchValue: any
+  coinRecords: Array<{ [string]: string }>,
+  searchValue: string
 };
 
 class App extends Component<PropType, StateType> {
@@ -26,9 +24,9 @@ class App extends Component<PropType, StateType> {
       .then(response => response.json())
       .then(data => this.setState({ coinRecords: data }));
   }
-  searchCoins(formText) {
-    //console.log("text entered: ", formText);
-    this.setState({ searchValue: formText });
+  searchCoins(searchBoxText: string) {
+    //console.log("text entered: ", searchBoxText);
+    this.setState({ searchValue: searchBoxText });
   }
 
   render() {
@@ -38,10 +36,7 @@ class App extends Component<PropType, StateType> {
           <h1 className="App-header">Cryptocurrency Values</h1>
         </div>
         <div className="App-body">
-          <SearchBox
-            value={this.state.searchValue}
-            searchCoins={this.searchCoins.bind(this)}
-          />
+          <SearchBox searchCoins={this.searchCoins.bind(this)} />
           <hr />
           <CoinRow
             coinRecords={this.state.coinRecords}

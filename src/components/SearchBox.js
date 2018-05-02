@@ -1,27 +1,24 @@
 // @flow
 
-import React, { Component } from "react";
+import React from "react";
+
 type PropType = {
   searchCoins: string => void
 };
-type StateType = {};
 
-class SearchBox extends Component<PropType, StateType> {
-  handleChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    this.props.searchCoins(e.currentTarget.value);
-  };
-  render() {
-    return (
-      <label>
-        <input
-          type="text"
-          rows="1"
-          placeholder="Search"
-          onChange={this.handleChange.bind(this)}
-        />
-      </label>
-    );
-  }
+function SearchBox(props: PropType) {
+  return (
+    <label>
+      <input
+        type="text"
+        rows="1"
+        placeholder="Search"
+        onChange={(event: SyntheticEvent<HTMLInputElement>) => {
+          props.searchCoins(event.currentTarget.value);
+        }}
+      />
+    </label>
+  );
 }
 
 export default SearchBox;

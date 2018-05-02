@@ -1,18 +1,27 @@
-import React from "react";
+// @flow
+
+//import React from "react";
 import fuzzysearch from "fuzzysearch";
 import CoinRecord from "./CoinRecord";
+import * as React from "react";
 
-function CoinRow(props) {
+type PropType = {
+  searchValue: string,
+  coinRecords: Array<{ [string]: string }>
+};
+
+function CoinRow(props: PropType): Array<any> {
   const ticker = props.coinRecords.map(coin => {
     if (props.searchValue === "") {
-      return <CoinRecord coin={coin} />;
+      return <CoinRecord key={coin.id} coin={coin} />;
     } else {
       if (
         fuzzysearch(props.searchValue.toUpperCase(), coin.name.toUpperCase())
       ) {
-        return <CoinRecord coin={coin} />;
+        return <CoinRecord key={coin.id} coin={coin} />;
       }
     }
+    return null;
   });
   return ticker;
 }
