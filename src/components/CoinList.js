@@ -9,7 +9,7 @@ type PropType = {
   coinRecords: Array<{ [string]: string }>
 };
 
-function CoinRow(props: PropType): Array<any> {
+function CoinList(props: PropType): Array<any> {
   const ticker = props.coinRecords.map(coin => {
     if (props.searchValue === "") {
       return <CoinRecord key={coin.id} coin={coin} />;
@@ -25,4 +25,4 @@ function CoinRow(props: PropType): Array<any> {
   return ticker;
 }
 
-export default CoinRow;
+export default CoinList;

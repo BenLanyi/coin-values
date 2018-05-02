@@ -9,6 +9,7 @@
 
 .App-header {
   background-color: rgb(71, 71, 71);
+  border-radius: 25px;
   height: 100px;
   padding: 20px;
   color: white;
@@ -22,20 +23,25 @@
   font-size: large;
 }
 
-.Coin-row {
-  width: 400px;
+.Coin-record {
+  width: 300px;
   border-width: 2px;
   border-style: solid;
   border-color: transparent;
+  margin: 10px;
+  border-radius: 25px;
+  padding: 5px;
 }
 
-.Coin-row:hover {
+.Coin-record:hover {
   border-color: rgb(71, 71, 71);
 }
 
 .Coin-name {
   background-color: rgb(158, 180, 153);
-  width: 396px;
+  width: 286px;
+  border-radius: 25px;
+  padding-left: 10px;
   color: rgb(49, 56, 48);
 }
 

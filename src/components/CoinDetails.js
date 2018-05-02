@@ -11,7 +11,9 @@ function CoinDetails(props: PropType) {
     <div>
       <p>rank: {props.coin.rank}</p>
       <p>price btc: {props.coin.price_btc}</p>
-
+      <p>rank: {props.coin.rank}</p>
+      <p>price btc: {props.coin.price_btc}</p>
+      <p>24h_volume_usd:{props.coin["24h_volume_usd"]}</p>
       <p>market cap usd: {props.coin.market_cap_usd}</p>
       <p>available supply:{props.coin.available_supply}</p>
       <p>total supply: {props.coin.total_supply}</p>

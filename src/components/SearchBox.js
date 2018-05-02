@@ -1,6 +1,8 @@
 // @flow
 
 import React from "react";
+import { Input } from "antd";
+const Search = Input.Search;
 
 type PropType = {
   searchCoins: string => void
@@ -8,16 +10,15 @@ type PropType = {
 
 function SearchBox(props: PropType) {
   return (
-    <label>
-      <input
-        type="text"
-        rows="1"
-        placeholder="Search"
-        onChange={(event: SyntheticEvent<HTMLInputElement>) => {
-          props.searchCoins(event.currentTarget.value);
-        }}
-      />
-    </label>
+    <Search
+      placeholder="input search text"
+      onSearch={value => console.log(value)}
+      onChange={(event: SyntheticEvent<HTMLInputElement>) => {
+        props.searchCoins(event.currentTarget.value);
+      }}
+      size="large"
+      style={{ width: 200 }}
+    />
   );
 }
 

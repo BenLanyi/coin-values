@@ -2,8 +2,12 @@
 
 import React, { Component } from "react";
 import "./App.css";
+import "antd/dist/antd.css";
 import SearchBox from "./components/SearchBox.js";
-import CoinRow from "./components/CoinRow.js";
+import CoinList from "./components/CoinList.js";
+import { Row } from "antd";
+import { Route, Link } from "react-router-dom";
+import RouterTest from "./components/RouterTest";
 
 type PropType = {};
 type StateType = {
@@ -31,17 +35,23 @@ class App extends Component<PropType, StateType> {
 
   render() {
     return (
-      <div className="App">
-        <div>
-          <h1 className="App-header">Cryptocurrency Values</h1>
-        </div>
-        <div className="App-body">
-          <SearchBox searchCoins={this.searchCoins.bind(this)} />
-          <hr />
-          <CoinRow
-            coinRecords={this.state.coinRecords}
-            searchValue={this.state.searchValue}
-          />
+      <div>
+        <Route path="/hello" component={RouterTest} />
+        <Link to="/hello">Router Test</Link>
+        <div className="App">
+          <div>
+            <h1 className="App-header">Cryptocurrency Values</h1>
+          </div>
+          <div className="App-body">
+            <SearchBox searchCoins={this.searchCoins.bind(this)} />
+            <hr />
+            <Row type="flex" justify="start">
+              <CoinList
+                coinRecords={this.state.coinRecords}
+                searchValue={this.state.searchValue}
+              />
+            </Row>
+          </div>
         </div>
       </div>
     );
