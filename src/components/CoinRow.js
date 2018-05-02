@@ -1,9 +1,8 @@
 // @flow
 
-//import React from "react";
+import React from "react";
 import fuzzysearch from "fuzzysearch";
 import CoinRecord from "./CoinRecord";
-import * as React from "react";
 
 type PropType = {
   searchValue: string,
