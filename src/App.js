@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import "antd/dist/antd.css";
+
 import Routes from "./Routes";
 
 type PropType = {};

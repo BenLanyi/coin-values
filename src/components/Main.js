@@ -3,7 +3,7 @@
 import React from "react";
 import SearchBox from "./SearchBox";
 import CoinList from "./CoinList";
-import { Row } from "antd";
+import { Row, Icon } from "antd";
 import { Link } from "react-router-dom";
 
 type PropTypes = {
@@ -15,14 +15,21 @@ type PropTypes = {
 const Main = (props: PropTypes) => {
   return (
     <div>
-      <Link to="/hello">Router Test</Link>
       <div className="App">
         <div>
           <h1 className="App-header">Cryptocurrency Values</h1>
         </div>
-        <div className="App-body">
+        <div className="App-menu">
           <SearchBox setSearchValue={props.setSearchValue} />
-          <hr />
+          <Link to="/hello" style={{ float: "right" }}>
+            <Icon
+              className="Icon"
+              type="question-circle-o"
+              style={{ fontSize: 40 }}
+            />
+          </Link>
+        </div>
+        <div className="App-body">
           <Row type="flex" justify="start">
             <CoinList
               searchValue={props.searchValue}
