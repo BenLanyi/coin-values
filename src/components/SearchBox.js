@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Input } from "antd";
-import "antd/dist/antd.css";
 const Search = Input.Search;
 
 type PropType = {

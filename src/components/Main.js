@@ -16,9 +16,7 @@ const Main = (props: PropTypes) => {
   return (
     <div>
       <div className="App">
-        <div>
-          <h1 className="App-header">Cryptocurrency Values</h1>
-        </div>
+        <h1 className="App-header">Cryptocurrency Values</h1>
         <div className="App-menu">
           <SearchBox setSearchValue={props.setSearchValue} />
           <Link to="/hello" style={{ float: "right" }}>

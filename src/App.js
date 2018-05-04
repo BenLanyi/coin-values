@@ -11,6 +11,15 @@ type StateType = {
   searchValue: string
 };
 
+// Testing Immutable.js
+const { Map } = require("immutable");
+var coinRecords = Map({ test1: "hello", test2: "world" });
+var searchValue = "some stuff";
+var state2 = Map({ coinRecords: coinRecords, searchValue: searchValue });
+console.log(state2.get("searchValue"));
+console.log(state2.getIn(["coinRecords", "test1"]));
+// End Test
+
 class App extends Component<PropType, StateType> {
   state = {
     coinRecords: [],
