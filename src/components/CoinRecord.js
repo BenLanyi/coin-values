@@ -1,10 +1,9 @@
 // @flow
 
 import React from "react";
-import { Popover, Button } from "antd";
+import { Popover, Col } from "antd";
 import "antd/dist/antd.css";
 import CoinDetails from "./CoinDetails";
-import { Col } from "antd";
 
 type PropType = {
   coin: { [string]: string }
