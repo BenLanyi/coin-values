@@ -3,6 +3,7 @@
   "main": "lib/index.js",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://benlanyi.github.io/coin-values/",
   "dependencies": {
     "antd": "^3.4.4",
     "fuzzysearch": "^1.0.3",
@@ -14,15 +15,18 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "babel src/ -d lib/",
+    "build": "react-scripts build",
     "prepublish": "npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "flow": "flow"
+    "flow": "flow",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.71.0"
+    "flow-bin": "^0.71.0",
+    "gh-pages": "^1.1.0"
   }
 }
